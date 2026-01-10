@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { FiX, FiCheck, FiCalendar, FiDollarSign, FiMail, FiUser, FiBriefcase, FiFileText, FiGlobe, FiArrowRight, FiArrowLeft } from "react-icons/fi"
+import { toast } from "@/lib/toast"
 
 export default function QuoteModal({ isOpen, onClose }) {
   const [formData, setFormData] = useState({
@@ -118,26 +119,78 @@ export default function QuoteModal({ isOpen, onClose }) {
     setIsSubmitting(true)
     
     try {
-      await new Promise(resolve => setTimeout(resolve, 1500))
+      // Airtable veri hazırlama
+      const airtableData = {
+        name: formData.name,
+        email: formData.email,
+        company: formData.company || '',
+        website: formData.website || '',
+        projectType: formData.projectType,
+        budget: formData.budget,
+        budgetLabel: budgetRanges.find(b => b.value === formData.budget)?.label || formData.budget,
+        timeline: formData.timeline,
+        timelineLabel: timelines.find(t => t.value === formData.timeline)?.label || formData.timeline,
+        description: formData.description,
+        source: 'Quote Modal',
+        submissionTime: new Date().toISOString()
+      }
+
+      // API'ye gönder
+      const response = await fetch('/api/submit-quote', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(airtableData)
+      })
+
+      const result = await response.json()
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Form gönderilemedi')
+      }
+
+      // Başarılı
+      console.log('Airtable kaydı başarılı:', result)
       
-      console.log("Custom quote submitted:", formData)
+      // Toast bildirimi göster
+      toast.success('Quote request submitted successfully! We will contact you within 24 hours.', {
+        duration: 5000,
+        position: 'bottom-right'
+      })
       
       setIsSubmitting(false)
       setIsSubmitted(true)
       
+      // 4 saniye sonra modal'ı kapat
       setTimeout(() => {
         handleClose()
       }, 4000)
       
     } catch (error) {
-      console.error("Submission error:", error)
+      console.error('Gönderim hatası:', error)
+      
+      // Hata toast'ı göster
+      toast.error(`Submission failed: ${error.message}`, {
+        duration: 6000,
+        position: 'bottom-right'
+      })
+      
       setIsSubmitting(false)
-      setErrors({ submit: "Failed to submit. Please try again." })
+      setErrors({ submit: error.message })
     }
   }
 
   const handleClose = () => {
     if (!isSubmitting) {
+      // Başarılı gönderimden sonra toast göster
+      if (isSubmitted) {
+        toast.info('Quote request completed. Check your email for details.', {
+          duration: 3000,
+          position: 'bottom-right'
+        })
+      }
+      
       onClose()
       setTimeout(() => {
         setCurrentStep(1)
@@ -179,6 +232,8 @@ export default function QuoteModal({ isOpen, onClose }) {
 
   const progressPercentage = (currentStep / 3) * 100
 
+  if (!isOpen) return null
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -200,7 +255,7 @@ export default function QuoteModal({ isOpen, onClose }) {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 10, scale: 0.98 }}
               transition={{ duration: 0.3, type: "spring", damping: 25 }}
-              className="relative w-full max-w-4xl max-h-[96vh] sm:max-h-[90vh] overflow-hidden bg-black border border-white/10 flex flex-col"
+              className="relative w-full max-w-4xl max-h-[96vh] sm:max-h-[90vh] overflow-hidden bg-black border border-white/10 flex flex-col rounded-lg"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Header - Compact */}
@@ -227,7 +282,7 @@ export default function QuoteModal({ isOpen, onClose }) {
                   
                   <button
                     onClick={handleClose}
-                    className="group w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 border border-white/10 flex items-center justify-center hover:border-white/20 hover:bg-white/5 transition-all duration-300 flex-shrink-0 mt-0.5"
+                    className="group w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 border border-white/10 flex items-center justify-center hover:border-white/20 hover:bg-white/5 transition-all duration-300 flex-shrink-0 mt-0.5 rounded-full"
                     disabled={isSubmitting}
                     aria-label="Close modal"
                   >
@@ -241,12 +296,12 @@ export default function QuoteModal({ isOpen, onClose }) {
                     <span>Step {currentStep} of 3</span>
                     <span>{Math.round(progressPercentage)}%</span>
                   </div>
-                  <div className="h-0.5 sm:h-px bg-white/10 overflow-hidden">
+                  <div className="h-0.5 sm:h-px bg-white/10 overflow-hidden rounded-full">
                     <motion.div
                       initial={{ width: 0 }}
                       animate={{ width: `${progressPercentage}%` }}
                       transition={{ duration: 0.5 }}
-                      className="h-full bg-yellow-300"
+                      className="h-full bg-yellow-300 rounded-full"
                     />
                   </div>
                 </div>
@@ -262,7 +317,7 @@ export default function QuoteModal({ isOpen, onClose }) {
                         key={step}
                         className="flex items-center gap-1.5 sm:gap-2"
                       >
-                        <div className={`w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 border flex items-center justify-center text-xs sm:text-sm font-light transition-all duration-300 ${
+                        <div className={`w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 border flex items-center justify-center text-xs sm:text-sm font-light transition-all duration-300 rounded-full ${
                           isCurrent
                             ? "border-yellow-300 bg-yellow-300 text-black"
                             : currentStep > stepNumber
@@ -314,7 +369,7 @@ export default function QuoteModal({ isOpen, onClose }) {
                               onChange={handleChange}
                               onBlur={() => setTouched(prev => ({ ...prev, name: true }))}
                               required
-                              className={`w-full bg-black border px-3 py-2 sm:px-4 sm:py-3 text-white text-xs sm:text-sm focus:outline-none focus:border-yellow-300 transition-all duration-300 font-light tracking-wide ${
+                              className={`w-full bg-black border px-3 py-2 sm:px-4 sm:py-3 text-white text-xs sm:text-sm focus:outline-none focus:border-yellow-300 transition-all duration-300 font-light tracking-wide rounded-lg ${
                                 errors.name ? "border-red-500/50" : "border-white/10"
                               }`}
                               placeholder="John Doe"
@@ -336,7 +391,7 @@ export default function QuoteModal({ isOpen, onClose }) {
                               onChange={handleChange}
                               onBlur={() => setTouched(prev => ({ ...prev, email: true }))}
                               required
-                              className={`w-full bg-black border px-3 py-2 sm:px-4 sm:py-3 text-white text-xs sm:text-sm focus:outline-none focus:border-yellow-300 transition-all duration-300 font-light tracking-wide ${
+                              className={`w-full bg-black border px-3 py-2 sm:px-4 sm:py-3 text-white text-xs sm:text-sm focus:outline-none focus:border-yellow-300 transition-all duration-300 font-light tracking-wide rounded-lg ${
                                 errors.email ? "border-red-500/50" : "border-white/10"
                               }`}
                               placeholder="john@example.com"
@@ -358,7 +413,7 @@ export default function QuoteModal({ isOpen, onClose }) {
                               name="company"
                               value={formData.company}
                               onChange={handleChange}
-                              className="w-full bg-black border border-white/10 px-3 py-2 sm:px-4 sm:py-3 text-white text-xs sm:text-sm focus:outline-none focus:border-yellow-300 transition-all duration-300 font-light tracking-wide"
+                              className="w-full bg-black border border-white/10 px-3 py-2 sm:px-4 sm:py-3 text-white text-xs sm:text-sm focus:outline-none focus:border-yellow-300 transition-all duration-300 font-light tracking-wide rounded-lg"
                               placeholder="Your company name"
                             />
                           </div>
@@ -373,7 +428,7 @@ export default function QuoteModal({ isOpen, onClose }) {
                               name="website"
                               value={formData.website}
                               onChange={handleChange}
-                              className="w-full bg-black border border-white/10 px-3 py-2 sm:px-4 sm:py-3 text-white text-xs sm:text-sm focus:outline-none focus:border-yellow-300 transition-all duration-300 font-light tracking-wide"
+                              className="w-full bg-black border border-white/10 px-3 py-2 sm:px-4 sm:py-3 text-white text-xs sm:text-sm focus:outline-none focus:border-yellow-300 transition-all duration-300 font-light tracking-wide rounded-lg"
                               placeholder="https://example.com"
                             />
                           </div>
@@ -408,7 +463,7 @@ export default function QuoteModal({ isOpen, onClose }) {
                                 key={type}
                                 type="button"
                                 onClick={() => handleSelect("projectType", type)}
-                                className={`p-2.5 sm:p-3 md:p-4 border text-left transition-all duration-200 group ${
+                                className={`p-2.5 sm:p-3 md:p-4 border text-left transition-all duration-200 group rounded-lg ${
                                   formData.projectType === type
                                     ? "border-yellow-300 bg-yellow-300/10 text-yellow-300"
                                     : "border-white/10 bg-black text-white/70 hover:border-white/20 hover:text-white"
@@ -446,7 +501,7 @@ export default function QuoteModal({ isOpen, onClose }) {
                                 key={range.value}
                                 type="button"
                                 onClick={() => handleSelect("budget", range.value)}
-                                className={`p-3 sm:p-4 md:p-6 border text-left transition-all duration-200 group ${
+                                className={`p-3 sm:p-4 md:p-6 border text-left transition-all duration-200 group rounded-lg ${
                                   formData.budget === range.value
                                     ? "border-yellow-300 bg-yellow-300/10"
                                     : "border-white/10 bg-black hover:border-white/20"
@@ -493,7 +548,7 @@ export default function QuoteModal({ isOpen, onClose }) {
                                 key={time.value}
                                 type="button"
                                 onClick={() => handleSelect("timeline", time.value)}
-                                className={`p-3 sm:p-4 md:p-6 border transition-all duration-200 text-center group ${
+                                className={`p-3 sm:p-4 md:p-6 border transition-all duration-200 text-center group rounded-lg ${
                                   formData.timeline === time.value
                                     ? "border-yellow-300 bg-yellow-300/10"
                                     : "border-white/10 bg-black hover:border-white/20"
@@ -533,7 +588,7 @@ export default function QuoteModal({ isOpen, onClose }) {
                             animate={{ opacity: 1, scale: 1 }}
                             className="text-center py-6 sm:py-8 md:py-12"
                           >
-                            <div className="w-12 h-12 sm:w-16 sm:h-16 border border-green-500/30 flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                            <div className="w-12 h-12 sm:w-16 sm:h-16 border border-green-500/30 flex items-center justify-center mx-auto mb-4 sm:mb-6 rounded-full">
                               <FiCheck className="text-green-300 text-xl sm:text-2xl" />
                             </div>
                             <h3 className="text-base sm:text-lg md:text-xl font-light text-white mb-3 sm:mb-4 tracking-tight">
@@ -559,7 +614,7 @@ export default function QuoteModal({ isOpen, onClose }) {
                                 onChange={handleChange}
                                 required
                                 rows={5}
-                                className={`w-full bg-black border px-3 py-2 sm:px-4 sm:py-3 text-white text-xs sm:text-sm focus:outline-none focus:border-yellow-300 transition-all duration-300 font-light tracking-wide resize-none ${
+                                className={`w-full bg-black border px-3 py-2 sm:px-4 sm:py-3 text-white text-xs sm:text-sm focus:outline-none focus:border-yellow-300 transition-all duration-300 font-light tracking-wide resize-none rounded-lg ${
                                   errors.description ? "border-red-500/50" : "border-white/10"
                                 }`}
                                 placeholder="Please describe your project in detail. Include your goals, target audience, specific features needed, design preferences, and any other important information that will help us understand your vision."
@@ -583,7 +638,7 @@ export default function QuoteModal({ isOpen, onClose }) {
                             </div>
 
                             {/* Summary Card - Mobile Optimized */}
-                            <div className="border border-white/10 p-3 sm:p-4 md:p-6 bg-black/50">
+                            <div className="border border-white/10 p-3 sm:p-4 md:p-6 bg-black/50 rounded-lg">
                               <div className="flex items-center gap-1.5 sm:gap-2 mb-3 sm:mb-4 md:mb-6">
                                 <div className="w-1 h-3 sm:h-4 bg-yellow-300"></div>
                                 <h4 className="text-white text-xs sm:text-sm font-light tracking-widest uppercase">
@@ -660,7 +715,7 @@ export default function QuoteModal({ isOpen, onClose }) {
                   </AnimatePresence>
                   
                   {errors.submit && (
-                    <div className="mt-4 sm:mt-6 p-3 sm:p-4 border border-red-500/30 bg-red-500/10">
+                    <div className="mt-4 sm:mt-6 p-3 sm:p-4 border border-red-500/30 bg-red-500/10 rounded-lg">
                       <p className="text-red-400/70 text-xs sm:text-sm">{errors.submit}</p>
                     </div>
                   )}
@@ -676,7 +731,7 @@ export default function QuoteModal({ isOpen, onClose }) {
                         <button
                           type="button"
                           onClick={handleBack}
-                          className="px-3 sm:px-4 py-1.5 sm:py-2 border border-white/10 text-white/70 hover:text-white hover:border-white/20 transition-all duration-200 font-light text-[10px] xs:text-xs sm:text-sm tracking-widest uppercase flex items-center gap-1 sm:gap-2 disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto justify-center"
+                          className="px-3 sm:px-4 py-1.5 sm:py-2 border border-white/10 text-white/70 hover:text-white hover:border-white/20 transition-all duration-200 font-light text-[10px] xs:text-xs sm:text-sm tracking-widest uppercase flex items-center gap-1 sm:gap-2 disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto justify-center rounded-lg"
                           disabled={isSubmitting}
                         >
                           <FiArrowLeft className="text-[10px] xs:text-xs sm:text-sm" />
@@ -695,7 +750,7 @@ export default function QuoteModal({ isOpen, onClose }) {
                           <button
                             type="button"
                             onClick={handleNext}
-                            className="px-4 sm:px-6 py-1.5 sm:py-2 bg-white text-black hover:bg-yellow-300 transition-all duration-200 font-light text-[10px] xs:text-xs sm:text-sm tracking-widest uppercase flex items-center justify-center gap-1.5 sm:gap-2 group w-full"
+                            className="px-4 sm:px-6 py-1.5 sm:py-2 bg-white text-black hover:bg-yellow-300 transition-all duration-200 font-light text-[10px] xs:text-xs sm:text-sm tracking-widest uppercase flex items-center justify-center gap-1.5 sm:gap-2 group w-full rounded-lg"
                             disabled={isSubmitting}
                           >
                             <span>Continue</span>
@@ -706,11 +761,11 @@ export default function QuoteModal({ isOpen, onClose }) {
                             type="button"
                             onClick={handleSubmit}
                             disabled={isSubmitting}
-                            className="px-4 sm:px-6 py-1.5 sm:py-2 bg-white text-black hover:bg-yellow-300 transition-all duration-200 font-light text-[10px] xs:text-xs sm:text-sm tracking-widest uppercase flex items-center justify-center gap-1.5 sm:gap-2 disabled:opacity-50 disabled:cursor-not-allowed w-full"
+                            className="px-4 sm:px-6 py-1.5 sm:py-2 bg-white text-black hover:bg-yellow-300 transition-all duration-200 font-light text-[10px] xs:text-xs sm:text-sm tracking-widest uppercase flex items-center justify-center gap-1.5 sm:gap-2 disabled:opacity-50 disabled:cursor-not-allowed w-full rounded-lg"
                           >
                             {isSubmitting ? (
                               <>
-                                <div className="w-3 h-3 sm:w-4 sm:h-4 border-2 border-black border-t-transparent animate-spin"></div>
+                                <div className="w-3 h-3 sm:w-4 sm:h-4 border-2 border-black border-t-transparent animate-spin rounded-full"></div>
                                 <span>Processing...</span>
                               </>
                             ) : (

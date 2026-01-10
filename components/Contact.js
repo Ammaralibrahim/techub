@@ -3,6 +3,7 @@
 import { motion } from "framer-motion"
 import { useState } from "react"
 import { FiMail, FiMapPin, FiPhone, FiSend, FiCheck, FiClock, FiShield, FiDollarSign, FiMessageSquare } from "react-icons/fi"
+import { toast } from "@/lib/toast"
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -26,19 +27,71 @@ export default function Contact() {
     e.preventDefault()
     setIsSubmitting(true)
 
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500))
+    try {
+      // Airtable veri hazırlama
+      const airtableData = {
+        name: formData.name,
+        email: formData.email,
+        company: formData.company || "",
+        budget: formData.budget || "",
+        message: formData.message,
+        source: "Contact Page",
+        submissionTime: new Date().toISOString()
+      }
 
-    console.log("Form submitted:", formData)
-    
-    setIsSubmitting(false)
-    setIsSubmitted(true)
-    
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setFormData({ name: "", email: "", company: "", budget: "", message: "" })
+      // API'ye gönder
+      const response = await fetch("/api/submit-contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(airtableData)
+      })
+
+      const result = await response.json()
+
+      if (!response.ok) {
+        throw new Error(result.error || "Form gönderilemedi")
+      }
+
+      // Başarılı
+      console.log("Airtable kaydı başarılı:", result)
+
+      // Toast bildirimi göster
+      toast.success(
+        "Message sent successfully! We'll get back to you within 24 hours.",
+        {
+          duration: 5000,
+          position: "bottom-right"
+        }
+      )
+
+      setIsSubmitting(false)
+      setIsSubmitted(true)
+
+      // 3 saniye sonra formu sıfırla
+      setTimeout(() => {
+        setFormData({
+          name: "",
+          email: "",
+          company: "",
+          budget: "",
+          message: ""
+        })
+        setIsSubmitted(false)
+      }, 3000)
+    } catch (error) {
+      console.error("Gönderim hatası:", error)
+
+      // Hata toast'ı göster
+      toast.error(`Message failed to send: ${error.message}`, {
+        duration: 6000,
+        position: "bottom-right"
+      })
+
+      setIsSubmitting(false)
       setIsSubmitted(false)
-    }, 3000)
+    }
   }
 
   const contactInfo = [
@@ -70,20 +123,26 @@ export default function Contact() {
   ]
 
   return (
-    <section id="contact" className="relative min-h-screen py-12 sm:py-20 md:py-32 px-4 sm:px-6 overflow-hidden bg-black">
+    <section
+      id="contact"
+      className="relative min-h-screen py-12 sm:py-20 md:py-32 px-4 sm:px-6 overflow-hidden bg-black"
+    >
       {/* Background Elements */}
       <div className="absolute inset-0">
         {/* Subtle Grid Pattern */}
-        <div className="absolute inset-0 opacity-5" style={{
-          backgroundImage: `linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px),
+        <div
+          className="absolute inset-0 opacity-5"
+          style={{
+            backgroundImage: `linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px),
                            linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px)`,
-          backgroundSize: "30px 30px"
-        }}></div>
-        
+            backgroundSize: "30px 30px",
+          }}
+        ></div>
+
         {/* Floating Elements */}
         <div className="absolute top-1/4 right-4 sm:right-10 w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 border border-white/5 rounded-full"></div>
         <div className="absolute bottom-1/4 left-4 sm:left-10 w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48 border border-white/5 rounded-full"></div>
-        
+
         {/* Corner Accents */}
         <div className="absolute top-10 sm:top-20 right-4 sm:right-20 w-12 h-12 sm:w-16 sm:h-16 md:w-24 md:h-24 border-t border-r border-white/10"></div>
         <div className="absolute bottom-10 sm:bottom-20 left-4 sm:left-20 w-12 h-12 sm:w-16 sm:h-16 md:w-24 md:h-24 border-b border-l border-white/10"></div>
@@ -118,12 +177,12 @@ export default function Contact() {
               </span>
             </span>
           </h2>
-          
+
           <div className="w-12 sm:w-16 md:w-24 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent mx-auto my-4 sm:my-6 md:my-8"></div>
-          
+
           <p className="text-white/60 text-xs sm:text-sm md:text-lg lg:text-xl max-w-xs sm:max-w-lg md:max-w-2xl lg:max-w-3xl mx-auto font-light tracking-wide leading-relaxed px-2">
-            Share your vision with us. Lets create something exceptional together.
-            Schedule a complimentary consultation with our experts.
+            Share your vision with us. Lets create something exceptional
+            together. Schedule a complimentary consultation with our experts.
           </p>
         </motion.div>
 
@@ -148,15 +207,22 @@ export default function Contact() {
                   Tell Us About Your Project
                 </h3>
                 <p className="text-white/50 text-xs sm:text-sm font-light">
-                  Fill out the form below and well get back to you within 24 hours.
+                  Fill out the form below and well get back to you within 24
+                  hours.
                 </p>
               </div>
 
-              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5 md:space-y-6">
+              <form
+                onSubmit={handleSubmit}
+                className="space-y-4 sm:space-y-5 md:space-y-6"
+              >
                 {/* Name & Email */}
                 <div className="grid sm:grid-cols-2 gap-4 sm:gap-5 md:gap-6">
                   <div>
-                    <label htmlFor="name" className="block text-xs sm:text-sm text-white/70 mb-1.5 sm:mb-2 font-light">
+                    <label
+                      htmlFor="name"
+                      className="block text-xs sm:text-sm text-white/70 mb-1.5 sm:mb-2 font-light"
+                    >
                       Your Name *
                     </label>
                     <input
@@ -173,7 +239,10 @@ export default function Contact() {
                   </div>
 
                   <div>
-                    <label htmlFor="email" className="block text-xs sm:text-sm text-white/70 mb-1.5 sm:mb-2 font-light">
+                    <label
+                      htmlFor="email"
+                      className="block text-xs sm:text-sm text-white/70 mb-1.5 sm:mb-2 font-light"
+                    >
                       Email Address *
                     </label>
                     <input
@@ -193,7 +262,10 @@ export default function Contact() {
                 {/* Company & Budget */}
                 <div className="grid sm:grid-cols-2 gap-4 sm:gap-5 md:gap-6">
                   <div>
-                    <label htmlFor="company" className="block text-xs sm:text-sm text-white/70 mb-1.5 sm:mb-2 font-light">
+                    <label
+                      htmlFor="company"
+                      className="block text-xs sm:text-sm text-white/70 mb-1.5 sm:mb-2 font-light"
+                    >
                       Company Name
                     </label>
                     <input
@@ -209,7 +281,10 @@ export default function Contact() {
                   </div>
 
                   <div>
-                    <label htmlFor="budget" className="block text-xs sm:text-sm text-white/70 mb-1.5 sm:mb-2 font-light">
+                    <label
+                      htmlFor="budget"
+                      className="block text-xs sm:text-sm text-white/70 mb-1.5 sm:mb-2 font-light"
+                    >
                       Project Budget
                     </label>
                     <select
@@ -232,7 +307,10 @@ export default function Contact() {
 
                 {/* Message */}
                 <div>
-                  <label htmlFor="message" className="block text-xs sm:text-sm text-white/70 mb-1.5 sm:mb-2 font-light">
+                  <label
+                    htmlFor="message"
+                    className="block text-xs sm:text-sm text-white/70 mb-1.5 sm:mb-2 font-light"
+                  >
                     Project Details *
                   </label>
                   <textarea
@@ -259,7 +337,9 @@ export default function Contact() {
                       ? "bg-green-600 hover:bg-green-700"
                       : "bg-white text-black hover:bg-yellow-300 hover:text-white"
                   }`}
-                  aria-label={isSubmitted ? "Message sent successfully" : "Send message"}
+                  aria-label={
+                    isSubmitted ? "Message sent successfully" : "Send message"
+                  }
                 >
                   {isSubmitting ? (
                     <>
@@ -307,8 +387,12 @@ export default function Contact() {
                       </div>
                     </div>
                     <div>
-                      <h3 className="text-white text-base sm:text-lg md:text-xl font-light mb-0.5 sm:mb-1">{info.title}</h3>
-                      <p className="text-white/50 text-xs sm:text-sm font-light">{info.value}</p>
+                      <h3 className="text-white text-base sm:text-lg md:text-xl font-light mb-0.5 sm:mb-1">
+                        {info.title}
+                      </h3>
+                      <p className="text-white/50 text-xs sm:text-sm font-light">
+                        {info.value}
+                      </p>
                     </div>
                   </div>
                 </motion.a>
@@ -324,7 +408,7 @@ export default function Contact() {
               className="relative bg-gradient-to-br from-yellow-300/5 via-black/50 to-black border border-yellow-300/20 rounded-xl sm:rounded-2xl lg:rounded-3xl p-4 sm:p-5 md:p-6 lg:p-8"
             >
               <div className="absolute -top-2 sm:-top-3 left-1/2 transform -translate-x-1/2">
-                <span className="bg-yellow-300 text-black px-3 sm:px-4 py-0.5 sm:py-1 text-xs tracking-widest uppercase font-light whitespace-nowrap">
+                <span className="bg-yellow-300 text-black px-3 sm:px-4 py-0.5 sm:py-1 text-xs tracking-widest uppercase font-light whitespace-nowrap rounded-full">
                   Our Promise
                 </span>
               </div>
@@ -335,7 +419,9 @@ export default function Contact() {
                     <FiClock className="text-yellow-300 text-sm sm:text-base" />
                   </div>
                   <div>
-                    <h4 className="text-white text-base sm:text-lg md:text-xl font-light mb-1 sm:mb-2">24-Hour Response</h4>
+                    <h4 className="text-white text-base sm:text-lg md:text-xl font-light mb-1 sm:mb-2">
+                      24-Hour Response
+                    </h4>
                     <p className="text-white/50 text-xs sm:text-sm font-light">
                       We guarantee a response within 24 hours for all inquiries.
                     </p>
@@ -347,9 +433,12 @@ export default function Contact() {
                     <FiShield className="text-yellow-300 text-sm sm:text-base" />
                   </div>
                   <div>
-                    <h4 className="text-white text-base sm:text-lg md:text-xl font-light mb-1 sm:mb-2">Confidentiality</h4>
+                    <h4 className="text-white text-base sm:text-lg md:text-xl font-light mb-1 sm:mb-2">
+                      Confidentiality
+                    </h4>
                     <p className="text-white/50 text-xs sm:text-sm font-light">
-                      Your project details are protected by strict NDA agreements.
+                      Your project details are protected by strict NDA
+                      agreements.
                     </p>
                   </div>
                 </div>
@@ -359,9 +448,12 @@ export default function Contact() {
                     <FiDollarSign className="text-yellow-300 text-sm sm:text-base" />
                   </div>
                   <div>
-                    <h4 className="text-white text-base sm:text-lg md:text-xl font-light mb-1 sm:mb-2">Transparent Pricing</h4>
+                    <h4 className="text-white text-base sm:text-lg md:text-xl font-light mb-1 sm:mb-2">
+                      Transparent Pricing
+                    </h4>
                     <p className="text-white/50 text-xs sm:text-sm font-light">
-                      No hidden fees. Clear pricing with detailed project estimates.
+                      No hidden fees. Clear pricing with detailed project
+                      estimates.
                     </p>
                   </div>
                 </div>
@@ -384,31 +476,49 @@ export default function Contact() {
               <div className="space-y-3 sm:space-y-4">
                 <div className="flex items-center gap-3 sm:gap-4">
                   <div className="flex-shrink-0 w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 rounded-full bg-yellow-300/20 border border-yellow-300/30 flex items-center justify-center">
-                    <span className="text-yellow-300 text-xs sm:text-sm font-light">1</span>
+                    <span className="text-yellow-300 text-xs sm:text-sm font-light">
+                      1
+                    </span>
                   </div>
                   <div>
-                    <h4 className="text-white text-sm sm:text-base font-light">Initial Consultation</h4>
-                    <p className="text-white/50 text-xs">Free 30-minute strategy call</p>
+                    <h4 className="text-white text-sm sm:text-base font-light">
+                      Initial Consultation
+                    </h4>
+                    <p className="text-white/50 text-xs">
+                      Free 30-minute strategy call
+                    </p>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-3 sm:gap-4">
                   <div className="flex-shrink-0 w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 rounded-full bg-yellow-300/20 border border-yellow-300/30 flex items-center justify-center">
-                    <span className="text-yellow-300 text-xs sm:text-sm font-light">2</span>
+                    <span className="text-yellow-300 text-xs sm:text-sm font-light">
+                      2
+                    </span>
                   </div>
                   <div>
-                    <h4 className="text-white text-sm sm:text-base font-light">Project Proposal</h4>
-                    <p className="text-white/50 text-xs">Detailed scope and timeline</p>
+                    <h4 className="text-white text-sm sm:text-base font-light">
+                      Project Proposal
+                    </h4>
+                    <p className="text-white/50 text-xs">
+                      Detailed scope and timeline
+                    </p>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-3 sm:gap-4">
                   <div className="flex-shrink-0 w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 rounded-full bg-yellow-300/20 border border-yellow-300/30 flex items-center justify-center">
-                    <span className="text-yellow-300 text-xs sm:text-sm font-light">3</span>
+                    <span className="text-yellow-300 text-xs sm:text-sm font-light">
+                      3
+                    </span>
                   </div>
                   <div>
-                    <h4 className="text-white text-sm sm:text-base font-light">Kick-off Meeting</h4>
-                    <p className="text-white/50 text-xs">Project start with dedicated team</p>
+                    <h4 className="text-white text-sm sm:text-base font-light">
+                      Kick-off Meeting
+                    </h4>
+                    <p className="text-white/50 text-xs">
+                      Project start with dedicated team
+                    </p>
                   </div>
                 </div>
               </div>
@@ -426,8 +536,12 @@ export default function Contact() {
             <div className="flex items-center gap-2 sm:gap-3">
               <FiCheck className="text-lg sm:text-xl" />
               <div>
-                <h4 className="font-semibold text-sm sm:text-base">Thank You!</h4>
-                <p className="text-xs sm:text-sm opacity-90">Well get back to you within 24 hours.</p>
+                <h4 className="font-semibold text-sm sm:text-base">
+                  Thank You!
+                </h4>
+                <p className="text-xs sm:text-sm opacity-90">
+                  Well get back to you within 24 hours.
+                </p>
               </div>
             </div>
           </motion.div>
