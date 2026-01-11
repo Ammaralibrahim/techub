@@ -83,8 +83,8 @@ export default function Testimonials() {
         }}></div>
         
         {/* Floating Elements */}
-        <div className="absolute top-1/4 left-4 sm:left-10 w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 border border-white/5 rounded-full"></div>
-        <div className="absolute bottom-1/4 right-4 sm:right-10 w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48 border border-white/5 rounded-full"></div>
+        <div className="absolute top-1/4 left-4 sm:left-10 w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 border border-white/5 xx-full"></div>
+        <div className="absolute bottom-1/4 right-4 sm:right-10 w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48 border border-white/5 xx-full"></div>
         
         {/* Corner Accents */}
         <div className="absolute top-10 sm:top-20 left-4 sm:left-20 w-12 h-12 sm:w-16 sm:h-16 md:w-24 md:h-24 border-t border-l border-white/10"></div>
@@ -134,7 +134,7 @@ export default function Testimonials() {
           {/* Navigation Arrows - Mobile optimized */}
           <button
             onClick={prevTestimonial}
-            className="absolute -left-2 sm:-left-4 md:-left-6 lg:-left-8 top-1/2 transform -translate-y-1/2 z-20 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 border border-white/10 rounded-full flex items-center justify-center text-white/70 hover:text-yellow-300 hover:border-yellow-300/30 transition-all duration-300 bg-black/50 backdrop-blur-sm"
+            className="absolute -left-2 sm:-left-4 md:-left-6 lg:-left-8 top-1/2 transform -translate-y-1/2 z-20 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 border border-white/10 xx-full flex items-center justify-center text-white/70 hover:text-yellow-300 hover:border-yellow-300/30 transition-all duration-300 bg-black/50 backdrop-blur-sm"
             aria-label="Previous testimonial"
           >
             <FiChevronLeft className="text-sm sm:text-base md:text-xl lg:text-2xl" />
@@ -142,7 +142,7 @@ export default function Testimonials() {
 
           <button
             onClick={nextTestimonial}
-            className="absolute -right-2 sm:-right-4 md:-right-6 lg:-right-8 top-1/2 transform -translate-y-1/2 z-20 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 border border-white/10 rounded-full flex items-center justify-center text-white/70 hover:text-yellow-300 hover:border-yellow-300/30 transition-all duration-300 bg-black/50 backdrop-blur-sm"
+            className="absolute -right-2 sm:-right-4 md:-right-6 lg:-right-8 top-1/2 transform -translate-y-1/2 z-20 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 border border-white/10 xx-full flex items-center justify-center text-white/70 hover:text-yellow-300 hover:border-yellow-300/30 transition-all duration-300 bg-black/50 backdrop-blur-sm"
             aria-label="Next testimonial"
           >
             <FiChevronRight className="text-sm sm:text-base md:text-xl lg:text-2xl" />
@@ -161,7 +161,7 @@ export default function Testimonials() {
               <FiMessageSquare />
             </div>
 
-            <div className="relative bg-gradient-to-br from-yellow-300/5 via-black/50 to-black rounded-xl sm:rounded-2xl lg:rounded-3xl border border-white/10 p-4 sm:p-6 md:p-8 lg:p-12 xl:p-16 max-w-6xl mx-auto">
+            <div className="relative bg-gradient-to-br from-yellow-300/5 via-black/50 to-black xx-xl sm:xx-2xl lg:xx-3xl border border-white/10 p-4 sm:p-6 md:p-8 lg:p-12 xl:p-16 max-w-6xl mx-auto">
               {/* Top Border Accent */}
               <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-16 sm:w-24 md:w-32 h-px bg-gradient-to-r from-transparent via-yellow-300/50 to-transparent"></div>
 
@@ -170,7 +170,7 @@ export default function Testimonials() {
                 <div className="lg:col-span-1">
                   <div className="flex flex-col items-center lg:items-start space-y-4 sm:space-y-6">
                     {/* Client Initials Circle */}
-                    <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 rounded-full bg-gradient-to-br from-yellow-300/10 to-white/5 border border-white/10 flex items-center justify-center">
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 xx-full bg-gradient-to-br from-yellow-300/10 to-white/5 border border-white/10 flex items-center justify-center">
                       <span className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-white">
                         {testimonials[currentIndex].name.split(" ").map(n => n[0]).join("")}
                       </span>
@@ -183,7 +183,7 @@ export default function Testimonials() {
                       <p className="text-white/60 text-xs sm:text-sm md:text-base font-light mb-2 sm:mb-3">
                         {testimonials[currentIndex].role}
                       </p>
-                      <div className="inline-flex items-center px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 bg-white/5 rounded-full border border-white/10">
+                      <div className="inline-flex items-center px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 bg-white/5 xx-full border border-white/10">
                         <span className="text-yellow-300 text-xs sm:text-sm md:text-base font-light">
                           {testimonials[currentIndex].company}
                         </span>
@@ -224,7 +224,7 @@ export default function Testimonials() {
                               setCurrentIndex(idx)
                               setIsAutoPlaying(false)
                             }}
-                            className={`h-1.5 sm:h-2 rounded-full transition-all duration-300 ${
+                            className={`h-1.5 sm:h-2 xx-full transition-all duration-300 ${
                               idx === currentIndex 
                                 ? "bg-yellow-300 w-6 sm:w-8 md:w-12" 
                                 : "bg-white/30 hover:bg-white/50 w-1.5 sm:w-2 md:w-3"
@@ -269,9 +269,9 @@ export default function Testimonials() {
                 }}
                 className="group relative cursor-pointer"
               >
-                <div className="relative bg-black/50 backdrop-blur-sm border border-white/10 rounded-lg sm:rounded-xl md:rounded-2xl p-4 sm:p-5 md:p-6 transition-all duration-500 group-hover:border-yellow-300/30 h-full">
+                <div className="relative bg-black/50 backdrop-blur-sm border border-white/10 xx-lg sm:xx-xl md:xx-2xl p-4 sm:p-5 md:p-6 transition-all duration-500 group-hover:border-yellow-300/30 h-full">
                   {/* Client Initials */}
-                  <div className="absolute top-4 sm:top-6 right-4 sm:right-6 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-gradient-to-br from-yellow-300/10 to-white/5 border border-white/10 flex items-center justify-center">
+                  <div className="absolute top-4 sm:top-6 right-4 sm:right-6 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 xx-full bg-gradient-to-br from-yellow-300/10 to-white/5 border border-white/10 flex items-center justify-center">
                     <span className="text-white text-xs sm:text-sm font-light">
                       {testimonial.name.split(" ").map(n => n[0]).join("")}
                     </span>

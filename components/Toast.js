@@ -78,10 +78,10 @@ export default function ToastContainer() {
                   damping: 25, 
                   stiffness: 300 
                 }}
-                className={`min-w-[300px] max-w-sm ${colors.bg} ${colors.border} border backdrop-blur-xl rounded-lg p-4 pointer-events-auto`}
+                className={`min-w-[300px] max-w-sm ${colors.bg} ${colors.border} border backdrop-blur-xl xx-lg p-4 pointer-events-auto`}
               >
                 <div className="flex items-start gap-3">
-                  <div className={`w-8 h-8 ${colors.bg} border ${colors.border} rounded-full flex items-center justify-center flex-shrink-0`}>
+                  <div className={`w-8 h-8 ${colors.bg} border ${colors.border} xx-full flex items-center justify-center flex-shrink-0`}>
                     <div className={colors.text}>
                       {getIcon(toast.type, toast.icon)}
                     </div>
@@ -115,7 +115,7 @@ export default function ToastContainer() {
                           duration: toast.duration / 1000, 
                           ease: "linear" 
                         }}
-                        className={`h-0.5 mt-3 ${colors.accent} rounded-full`}
+                        className={`h-0.5 mt-3 ${colors.accent} xx-full`}
                       />
                     )}
                   </div>

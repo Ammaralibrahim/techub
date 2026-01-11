@@ -90,7 +90,7 @@ export default function Hero() {
           <div className="text-xs text-white/30 tracking-widest uppercase mb-1 md:mb-2 group-hover:text-white/50 transition-colors duration-300 hidden md:block">
             Scroll
           </div>
-          <div className="w-8 h-8 md:w-10 md:h-10 border border-white/10 rounded-full flex items-center justify-center group-hover:border-yellow-300/30 transition-colors duration-300">
+          <div className="w-8 h-8 md:w-10 md:h-10 border border-white/10 xx-full flex items-center justify-center group-hover:border-yellow-300/30 transition-colors duration-300">
             <FiChevronDown className="text-white/50 text-sm md:text-base group-hover:text-yellow-300 transition-colors duration-300" />
           </div>
         </motion.button>
@@ -100,8 +100,8 @@ export default function Hero() {
           <div className="absolute top-4 right-4 md:top-8 md:right-8 w-8 md:w-16 h-px bg-white/10"></div>
           <div className="absolute top-4 right-4 md:top-8 md:right-8 w-px h-8 md:h-16 bg-white/10"></div>
 
-          <div className="absolute top-1/4 left-1/4 w-0.5 h-0.5 md:w-1 md:h-1 bg-yellow-300/20 rounded-full"></div>
-          <div className="absolute bottom-1/3 right-1/3 w-0.5 h-0.5 md:w-1 md:h-1 bg-yellow-300/15 rounded-full"></div>
+          <div className="absolute top-1/4 left-1/4 w-0.5 h-0.5 md:w-1 md:h-1 bg-yellow-300/20 xx-full"></div>
+          <div className="absolute bottom-1/3 right-1/3 w-0.5 h-0.5 md:w-1 md:h-1 bg-yellow-300/15 xx-full"></div>
         </div>
 
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 md:px-8 py-8 md:py-12">
@@ -283,43 +283,43 @@ export default function Hero() {
 
               <ul className="space-y-2 md:space-y-3 mb-6 md:mb-8 flex-grow">
                 <li className="flex items-center text-white/70 text-sm">
-                  <div className="w-4 h-4 bg-yellow-300/20 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                  <div className="w-4 h-4 bg-yellow-300/20 xx-full flex items-center justify-center mr-3 flex-shrink-0">
                     <FiCheck className="text-yellow-300 text-xs" />
                   </div>
                   Multi-page (10+ pages)
                 </li>
                 <li className="flex items-center text-white/70 text-sm">
-                  <div className="w-4 h-4 bg-yellow-300/20 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                  <div className="w-4 h-4 bg-yellow-300/20 xx-full flex items-center justify-center mr-3 flex-shrink-0">
                     <FiCheck className="text-yellow-300 text-xs" />
                   </div>
                   Advanced animations & effects
                 </li>
                 <li className="flex items-center text-white/70 text-sm">
-                  <div className="w-4 h-4 bg-yellow-300/20 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                  <div className="w-4 h-4 bg-yellow-300/20 xx-full flex items-center justify-center mr-3 flex-shrink-0">
                     <FiCheck className="text-yellow-300 text-xs" />
                   </div>
                   Optimized loading speed
                 </li>
                 <li className="flex items-center text-white/70 text-sm">
-                  <div className="w-4 h-4 bg-yellow-300/20 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                  <div className="w-4 h-4 bg-yellow-300/20 xx-full flex items-center justify-center mr-3 flex-shrink-0">
                     <FiCheck className="text-yellow-300 text-xs" />
                   </div>
                   Advanced SEO setup
                 </li>
                 <li className="flex items-center text-white/70 text-sm">
-                  <div className="w-4 h-4 bg-yellow-300/20 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                  <div className="w-4 h-4 bg-yellow-300/20 xx-full flex items-center justify-center mr-3 flex-shrink-0">
                     <FiCheck className="text-yellow-300 text-xs" />
                   </div>
                   7-day delivery
                 </li>
                 <li className="flex items-center text-white/70 text-sm">
-                  <div className="w-4 h-4 bg-yellow-300/20 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                  <div className="w-4 h-4 bg-yellow-300/20 xx-full flex items-center justify-center mr-3 flex-shrink-0">
                     <FiCheck className="text-yellow-300 text-xs" />
                   </div>
                   CMS integration
                 </li>
                 <li className="flex items-center text-white/70 text-sm">
-                  <div className="w-4 h-4 bg-yellow-300/20 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                  <div className="w-4 h-4 bg-yellow-300/20 xx-full flex items-center justify-center mr-3 flex-shrink-0">
                     <FiCheck className="text-yellow-300 text-xs" />
                   </div>
                   Premium support (30 days)

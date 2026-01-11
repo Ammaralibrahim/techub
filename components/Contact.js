@@ -140,8 +140,8 @@ export default function Contact() {
         ></div>
 
         {/* Floating Elements */}
-        <div className="absolute top-1/4 right-4 sm:right-10 w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 border border-white/5 rounded-full"></div>
-        <div className="absolute bottom-1/4 left-4 sm:left-10 w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48 border border-white/5 rounded-full"></div>
+        <div className="absolute top-1/4 right-4 sm:right-10 w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 border border-white/5 xx-full"></div>
+        <div className="absolute bottom-1/4 left-4 sm:left-10 w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48 border border-white/5 xx-full"></div>
 
         {/* Corner Accents */}
         <div className="absolute top-10 sm:top-20 right-4 sm:right-20 w-12 h-12 sm:w-16 sm:h-16 md:w-24 md:h-24 border-t border-r border-white/10"></div>
@@ -194,11 +194,11 @@ export default function Contact() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <div className="relative bg-black/50 backdrop-blur-sm border border-white/10 rounded-xl sm:rounded-2xl lg:rounded-3xl p-4 sm:p-5 md:p-6 lg:p-8 xl:p-12">
+            <div className="relative bg-black/50 backdrop-blur-sm border border-white/10 xx-xl sm:xx-2xl lg:xx-3xl p-4 sm:p-5 md:p-6 lg:p-8 xl:p-12">
               {/* Form Header */}
               <div className="mb-6 sm:mb-8 md:mb-10 lg:mb-12">
                 <div className="inline-flex items-center gap-2 mb-2 sm:mb-3 md:mb-4">
-                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-yellow-300"></div>
+                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 xx-full bg-yellow-300"></div>
                   <span className="text-xs sm:text-sm text-yellow-300 tracking-widest uppercase font-light">
                     Project Inquiry
                   </span>
@@ -232,7 +232,7 @@ export default function Contact() {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full bg-white/5 border border-white/10 rounded-lg sm:rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-white text-sm focus:outline-none focus:border-yellow-300/50 transition-all duration-300 font-light"
+                      className="w-full bg-white/5 border border-white/10 xx-lg sm:xx-xl px-3 sm:px-4 py-2.5 sm:py-3 text-white text-sm focus:outline-none focus:border-yellow-300/50 transition-all duration-300 font-light"
                       placeholder="Enter your name"
                       aria-label="Your name"
                     />
@@ -252,7 +252,7 @@ export default function Contact() {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full bg-white/5 border border-white/10 rounded-lg sm:rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-white text-sm focus:outline-none focus:border-yellow-300/50 transition-all duration-300 font-light"
+                      className="w-full bg-white/5 border border-white/10 xx-lg sm:xx-xl px-3 sm:px-4 py-2.5 sm:py-3 text-white text-sm focus:outline-none focus:border-yellow-300/50 transition-all duration-300 font-light"
                       placeholder="Enter your email"
                       aria-label="Your email address"
                     />
@@ -274,7 +274,7 @@ export default function Contact() {
                       name="company"
                       value={formData.company}
                       onChange={handleChange}
-                      className="w-full bg-white/5 border border-white/10 rounded-lg sm:rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-white text-sm focus:outline-none focus:border-yellow-300/50 transition-all duration-300 font-light"
+                      className="w-full bg-white/5 border border-white/10 xx-lg sm:xx-xl px-3 sm:px-4 py-2.5 sm:py-3 text-white text-sm focus:outline-none focus:border-yellow-300/50 transition-all duration-300 font-light"
                       placeholder="Your company name"
                       aria-label="Your company name"
                     />
@@ -292,7 +292,7 @@ export default function Contact() {
                       name="budget"
                       value={formData.budget}
                       onChange={handleChange}
-                      className="w-full bg-black border border-white/10 rounded-lg sm:rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-white text-sm focus:outline-none focus:border-yellow-300/50 transition-all duration-300 font-light appearance-none"
+                      className="w-full bg-black border border-white/10 xx-lg sm:xx-xl px-3 sm:px-4 py-2.5 sm:py-3 text-white text-sm focus:outline-none focus:border-yellow-300/50 transition-all duration-300 font-light appearance-none"
                       aria-label="Project budget"
                     >
                       <option value="">Select budget range</option>
@@ -320,7 +320,7 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     rows={4}
-                    className="w-full bg-white/5 border border-white/10 rounded-lg sm:rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-white text-sm focus:outline-none focus:border-yellow-300/50 transition-all duration-300 font-light resize-none"
+                    className="w-full bg-white/5 border border-white/10 xx-lg sm:xx-xl px-3 sm:px-4 py-2.5 sm:py-3 text-white text-sm focus:outline-none focus:border-yellow-300/50 transition-all duration-300 font-light resize-none"
                     placeholder="Tell us about your project goals, timeline, and any specific requirements..."
                     aria-label="Your project details"
                   />
@@ -332,7 +332,7 @@ export default function Contact() {
                   whileTap={{ scale: 0.98 }}
                   type="submit"
                   disabled={isSubmitting || isSubmitted}
-                  className={`w-full font-light py-3 sm:py-4 px-6 sm:px-8 rounded-lg sm:rounded-xl flex items-center justify-center gap-2 sm:gap-3 transition-all duration-300 text-xs sm:text-sm tracking-widest uppercase ${
+                  className={`w-full font-light py-3 sm:py-4 px-6 sm:px-8 xx-lg sm:xx-xl flex items-center justify-center gap-2 sm:gap-3 transition-all duration-300 text-xs sm:text-sm tracking-widest uppercase ${
                     isSubmitted
                       ? "bg-green-600 hover:bg-green-700"
                       : "bg-white text-black hover:bg-yellow-300 hover:text-white"
@@ -343,7 +343,7 @@ export default function Contact() {
                 >
                   {isSubmitting ? (
                     <>
-                      <div className="w-4 h-4 sm:w-5 sm:h-5 border-2 border-black border-t-transparent rounded-full animate-spin"></div>
+                      <div className="w-4 h-4 sm:w-5 sm:h-5 border-2 border-black border-t-transparent xx-full animate-spin"></div>
                       Sending...
                     </>
                   ) : isSubmitted ? (
@@ -377,11 +377,11 @@ export default function Contact() {
                   key={index}
                   href={info.link}
                   whileHover={{ x: 8 }}
-                  className="group relative bg-black/50 backdrop-blur-sm border border-white/10 rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 transition-all duration-500 hover:border-yellow-300/30 block"
+                  className="group relative bg-black/50 backdrop-blur-sm border border-white/10 xx-xl sm:xx-2xl p-4 sm:p-5 md:p-6 transition-all duration-500 hover:border-yellow-300/30 block"
                   aria-label={info.title}
                 >
                   <div className="flex items-start gap-3 sm:gap-4">
-                    <div className="flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-lg sm:rounded-xl bg-white/5 border border-white/10 group-hover:bg-yellow-300/10 group-hover:border-yellow-300/30 transition-all duration-300">
+                    <div className="flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 xx-lg sm:xx-xl bg-white/5 border border-white/10 group-hover:bg-yellow-300/10 group-hover:border-yellow-300/30 transition-all duration-300">
                       <div className="text-yellow-300">
                         {info.icon}
                       </div>
@@ -405,17 +405,17 @@ export default function Contact() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
-              className="relative bg-gradient-to-br from-yellow-300/5 via-black/50 to-black border border-yellow-300/20 rounded-xl sm:rounded-2xl lg:rounded-3xl p-4 sm:p-5 md:p-6 lg:p-8"
+              className="relative bg-gradient-to-br from-yellow-300/5 via-black/50 to-black border border-yellow-300/20 xx-xl sm:xx-2xl lg:xx-3xl p-4 sm:p-5 md:p-6 lg:p-8"
             >
               <div className="absolute -top-2 sm:-top-3 left-1/2 transform -translate-x-1/2">
-                <span className="bg-yellow-300 text-black px-3 sm:px-4 py-0.5 sm:py-1 text-xs tracking-widest uppercase font-light whitespace-nowrap rounded-full">
+                <span className="bg-yellow-300 text-black px-3 sm:px-4 py-0.5 sm:py-1 text-xs tracking-widest uppercase font-light whitespace-nowrap xx-full">
                   Our Promise
                 </span>
               </div>
 
               <div className="space-y-4 sm:space-y-5 md:space-y-6 pt-2 sm:pt-3">
                 <div className="flex items-start gap-3 sm:gap-4">
-                  <div className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-lg sm:rounded-xl bg-yellow-300/10 border border-yellow-300/20">
+                  <div className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 xx-lg sm:xx-xl bg-yellow-300/10 border border-yellow-300/20">
                     <FiClock className="text-yellow-300 text-sm sm:text-base" />
                   </div>
                   <div>
@@ -429,7 +429,7 @@ export default function Contact() {
                 </div>
 
                 <div className="flex items-start gap-3 sm:gap-4">
-                  <div className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-lg sm:rounded-xl bg-yellow-300/10 border border-yellow-300/20">
+                  <div className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 xx-lg sm:xx-xl bg-yellow-300/10 border border-yellow-300/20">
                     <FiShield className="text-yellow-300 text-sm sm:text-base" />
                   </div>
                   <div>
@@ -444,7 +444,7 @@ export default function Contact() {
                 </div>
 
                 <div className="flex items-start gap-3 sm:gap-4">
-                  <div className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-lg sm:rounded-xl bg-yellow-300/10 border border-yellow-300/20">
+                  <div className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 xx-lg sm:xx-xl bg-yellow-300/10 border border-yellow-300/20">
                     <FiDollarSign className="text-yellow-300 text-sm sm:text-base" />
                   </div>
                   <div>
@@ -466,7 +466,7 @@ export default function Contact() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
               viewport={{ once: true }}
-              className="relative bg-black/50 backdrop-blur-sm border border-white/10 rounded-xl sm:rounded-2xl lg:rounded-3xl p-4 sm:p-5 md:p-6 lg:p-8"
+              className="relative bg-black/50 backdrop-blur-sm border border-white/10 xx-xl sm:xx-2xl lg:xx-3xl p-4 sm:p-5 md:p-6 lg:p-8"
             >
               <h3 className="text-white text-lg sm:text-xl md:text-2xl font-light mb-4 sm:mb-5 md:mb-6 flex items-center gap-2 sm:gap-3">
                 <FiMessageSquare className="text-yellow-300 text-base sm:text-lg" />
@@ -475,7 +475,7 @@ export default function Contact() {
 
               <div className="space-y-3 sm:space-y-4">
                 <div className="flex items-center gap-3 sm:gap-4">
-                  <div className="flex-shrink-0 w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 rounded-full bg-yellow-300/20 border border-yellow-300/30 flex items-center justify-center">
+                  <div className="flex-shrink-0 w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 xx-full bg-yellow-300/20 border border-yellow-300/30 flex items-center justify-center">
                     <span className="text-yellow-300 text-xs sm:text-sm font-light">
                       1
                     </span>
@@ -491,7 +491,7 @@ export default function Contact() {
                 </div>
 
                 <div className="flex items-center gap-3 sm:gap-4">
-                  <div className="flex-shrink-0 w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 rounded-full bg-yellow-300/20 border border-yellow-300/30 flex items-center justify-center">
+                  <div className="flex-shrink-0 w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 xx-full bg-yellow-300/20 border border-yellow-300/30 flex items-center justify-center">
                     <span className="text-yellow-300 text-xs sm:text-sm font-light">
                       2
                     </span>
@@ -507,7 +507,7 @@ export default function Contact() {
                 </div>
 
                 <div className="flex items-center gap-3 sm:gap-4">
-                  <div className="flex-shrink-0 w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 rounded-full bg-yellow-300/20 border border-yellow-300/30 flex items-center justify-center">
+                  <div className="flex-shrink-0 w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 xx-full bg-yellow-300/20 border border-yellow-300/30 flex items-center justify-center">
                     <span className="text-yellow-300 text-xs sm:text-sm font-light">
                       3
                     </span>
@@ -531,7 +531,7 @@ export default function Contact() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="fixed bottom-4 sm:bottom-8 right-4 sm:right-8 bg-green-600 text-white px-4 py-3 sm:px-6 sm:py-4 rounded-lg sm:rounded-xl shadow-2xl z-50 max-w-xs sm:max-w-sm"
+            className="fixed bottom-4 sm:bottom-8 right-4 sm:right-8 bg-green-600 text-white px-4 py-3 sm:px-6 sm:py-4 xx-lg sm:xx-xl shadow-2xl z-50 max-w-xs sm:max-w-sm"
           >
             <div className="flex items-center gap-2 sm:gap-3">
               <FiCheck className="text-lg sm:text-xl" />

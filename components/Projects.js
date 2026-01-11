@@ -159,15 +159,15 @@ export default function Projects() {
     "Framer Motion": <SiFramer className="text-base sm:text-lg text-pink-500" />,
     "Three.js": <SiThreedotjs className="text-base sm:text-lg text-blue-300" />,
     "Google Cloud": <SiGooglecloud className="text-base sm:text-lg text-blue-400" />,
-    "Blockchain": <div className="w-4 h-4 sm:w-5 sm:h-5 bg-gradient-to-r from-yellow-500 to-orange-500 rounded" />,
+    "Blockchain": <div className="w-4 h-4 sm:w-5 sm:h-5 bg-gradient-to-r from-yellow-500 to-orange-500 xx" />,
   };
 
   return (
     <section id="projects" className="relative min-h-screen py-12 sm:py-20 md:py-32 px-4 sm:px-6 overflow-hidden bg-black">
       {/* Background Elements */}
       <div className="absolute inset-0">
-        <div className="absolute top-20 left-4 sm:left-10 w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 border border-white/5 rounded-full"></div>
-        <div className="absolute bottom-20 right-4 sm:right-10 w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48 border border-white/5 rounded-full"></div>
+        <div className="absolute top-20 left-4 sm:left-10 w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 border border-white/5 xx-full"></div>
+        <div className="absolute bottom-20 right-4 sm:right-10 w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48 border border-white/5 xx-full"></div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto">
@@ -216,7 +216,7 @@ export default function Projects() {
             <button
               key={category}
               onClick={() => setActiveFilter(category)}
-              className={`px-3 py-1.5 sm:px-4 sm:py-2 md:px-6 md:py-3 rounded-full text-xs sm:text-sm font-light tracking-widest uppercase transition-all duration-300 whitespace-nowrap flex-shrink-0 ${
+              className={`px-3 py-1.5 sm:px-4 sm:py-2 md:px-6 md:py-3 xx-full text-xs sm:text-sm font-light tracking-widest uppercase transition-all duration-300 whitespace-nowrap flex-shrink-0 ${
                 activeFilter === category
                   ? "bg-yellow-300 text-black shadow-lg shadow-yellow-300/20"
                   : "border border-white/10 text-white/70 hover:border-yellow-300/30 hover:text-yellow-300"
@@ -239,7 +239,7 @@ export default function Projects() {
               className="group relative"
             >
               {/* Large Project Card */}
-              <div className={`relative bg-black/50 backdrop-blur-sm rounded-xl md:rounded-2xl lg:rounded-3xl overflow-hidden transition-all duration-500 
+              <div className={`relative bg-black/50 backdrop-blur-sm xx-xl md:xx-2xl lg:xx-3xl overflow-hidden transition-all duration-500 
                 ${project.featured ? "border border-yellow-300/50" : "border border-white/10"} 
                 group-hover:border-yellow-300/30`}>
                 
@@ -247,7 +247,7 @@ export default function Projects() {
                 <div className="absolute top-3 sm:top-4 md:top-6 left-3 sm:left-4 md:left-6 right-3 sm:right-4 md:right-6 z-20 flex justify-between">
                   {/* Featured Badge */}
                   {project.featured && (
-                    <div className="bg-yellow-300 text-black px-2 py-0.5 sm:px-3 sm:py-1 md:px-4 md:py-2 rounded-full text-[10px] xs:text-xs sm:text-xs font-semibold uppercase tracking-widest flex items-center gap-1 sm:gap-2">
+                    <div className="bg-yellow-300 text-black px-2 py-0.5 sm:px-3 sm:py-1 md:px-4 md:py-2 xx-full text-[10px] xs:text-xs sm:text-xs font-semibold uppercase tracking-widest flex items-center gap-1 sm:gap-2">
                       <FiCheck className="text-[10px] xs:text-xs sm:text-xs md:text-sm" />
                       <span className="hidden xs:inline">Featured</span>
                       <span className="inline xs:hidden">★</span>
@@ -255,12 +255,12 @@ export default function Projects() {
                   )}
                   
                   {/* Status Badge */}
-                  <div className={`px-2 py-0.5 sm:px-3 sm:py-1 md:px-4 md:py-2 rounded-full text-[10px] xs:text-xs sm:text-xs font-semibold uppercase tracking-widest backdrop-blur-sm flex items-center gap-1 sm:gap-2 ml-auto ${
+                  <div className={`px-2 py-0.5 sm:px-3 sm:py-1 md:px-4 md:py-2 xx-full text-[10px] xs:text-xs sm:text-xs font-semibold uppercase tracking-widest backdrop-blur-sm flex items-center gap-1 sm:gap-2 ml-auto ${
                     project.status === "Live" 
                       ? "bg-green-500/20 text-green-300 border border-green-500/30"
                       : "bg-yellow-500/20 text-yellow-300 border border-yellow-500/30"
                   }`}>
-                    <div className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full ${project.status === "Live" ? "bg-green-300" : "bg-yellow-300"}`}></div>
+                    <div className={`w-1.5 h-1.5 sm:w-2 sm:h-2 xx-full ${project.status === "Live" ? "bg-green-300" : "bg-yellow-300"}`}></div>
                     <span>{project.status}</span>
                   </div>
                 </div>
@@ -308,7 +308,7 @@ export default function Projects() {
                           {project.technologies.slice(0, 3).map((tech, idx) => (
                             <div 
                               key={idx}
-                              className="flex items-center gap-1 px-2 py-1 sm:px-3 sm:py-1.5 bg-white/5 text-white/70 text-[10px] xs:text-xs rounded-full border border-white/10 group-hover:border-white/20 transition-colors duration-300"
+                              className="flex items-center gap-1 px-2 py-1 sm:px-3 sm:py-1.5 bg-white/5 text-white/70 text-[10px] xs:text-xs xx-full border border-white/10 group-hover:border-white/20 transition-colors duration-300"
                             >
                               <div className="hidden xs:block">
                                 {technologyIcons[tech] || <FiCode className="text-white/50 text-xs sm:text-sm" />}
@@ -317,7 +317,7 @@ export default function Projects() {
                             </div>
                           ))}
                           {project.technologies.length > 3 && (
-                            <div className="flex items-center gap-1 px-2 py-1 sm:px-3 sm:py-1.5 bg-white/5 text-white/70 text-[10px] xs:text-xs rounded-full border border-white/10">
+                            <div className="flex items-center gap-1 px-2 py-1 sm:px-3 sm:py-1.5 bg-white/5 text-white/70 text-[10px] xs:text-xs xx-full border border-white/10">
                               <span className="text-[10px] xs:text-xs">+{project.technologies.length - 3}</span>
                             </div>
                           )}
@@ -330,7 +330,7 @@ export default function Projects() {
                         <div className="grid grid-cols-1 xs:grid-cols-2 gap-1.5 sm:gap-2 md:gap-3">
                           {project.features.slice(0, 4).map((feature, idx) => (
                             <div key={idx} className="flex items-start gap-1.5 sm:gap-2 md:gap-3">
-                              <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-yellow-300 mt-0.5 sm:mt-1 md:mt-1.5 flex-shrink-0"></div>
+                              <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 xx-full bg-yellow-300 mt-0.5 sm:mt-1 md:mt-1.5 flex-shrink-0"></div>
                               <span className="text-white/70 text-[10px] xs:text-xs sm:text-sm line-clamp-2">{feature}</span>
                             </div>
                           ))}
@@ -392,7 +392,7 @@ export default function Projects() {
           viewport={{ once: true }}
           className="text-center px-2"
         >
-          <div className="relative border border-yellow-300/20 rounded-xl md:rounded-2xl lg:rounded-3xl p-4 sm:p-5 md:p-6 lg:p-8 xl:p-12 bg-gradient-to-br from-yellow-300/5 via-black/50 to-black">
+          <div className="relative border border-yellow-300/20 xx-xl md:xx-2xl lg:xx-3xl p-4 sm:p-5 md:p-6 lg:p-8 xl:p-12 bg-gradient-to-br from-yellow-300/5 via-black/50 to-black">
             <div className="absolute -top-2.5 sm:-top-3 md:-top-6 left-1/2 transform -translate-x-1/2">
               <span className="bg-yellow-300 text-black px-3 py-0.5 sm:px-4 sm:py-1 md:px-6 md:py-2 text-[10px] xs:text-xs sm:text-sm tracking-widest uppercase font-light whitespace-nowrap">
                 Lets Work Together

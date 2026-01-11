@@ -107,12 +107,12 @@ export default function Services() {
         <motion.div
           animate={{ y: [0, -20, 0] }}
           transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-1/4 left-4 sm:left-10 w-1 h-1 bg-yellow-300/30 rounded-full"
+          className="absolute top-1/4 left-4 sm:left-10 w-1 h-1 bg-yellow-300/30 xx-full"
         />
         <motion.div
           animate={{ y: [0, 20, 0] }}
           transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-          className="absolute top-3/4 right-4 sm:right-20 w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white/10 rounded-full"
+          className="absolute top-3/4 right-4 sm:right-20 w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white/10 xx-full"
         />
         
         {/* Corner Accents */}
@@ -164,17 +164,17 @@ export default function Services() {
               className="group relative h-full"
             >
               {/* Background Glow Effect */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl sm:rounded-2xl blur-xl`}></div>
+              <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 xx-xl sm:xx-2xl blur-xl`}></div>
               
               {/* Service Card */}
-              <div className={`relative h-full bg-black/50 backdrop-blur-sm border ${service.border} rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 group-hover:border-white/30 transition-all duration-500 overflow-hidden`}>
+              <div className={`relative h-full bg-black/50 backdrop-blur-sm border ${service.border} xx-xl sm:xx-2xl p-4 sm:p-6 md:p-8 group-hover:border-white/30 transition-all duration-500 overflow-hidden`}>
                 {/* Service Number */}
                 <div className="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 text-[80px] sm:text-[100px] md:text-[120px] font-bold text-white/5 group-hover:text-white/10 transition-colors duration-500">
                   {service.number}
                 </div>
 
                 {/* Icon Container */}
-                <div className={`relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-xl sm:rounded-2xl ${service.accent}/10 border ${service.border} flex items-center justify-center mb-4 sm:mb-6 md:mb-8 group-hover:${service.accent}/20 transition-all duration-300`}>
+                <div className={`relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 xx-xl sm:xx-2xl ${service.accent}/10 border ${service.border} flex items-center justify-center mb-4 sm:mb-6 md:mb-8 group-hover:${service.accent}/20 transition-all duration-300`}>
                   <div className={service.accent}>
                     {service.icon}
                   </div>
@@ -218,14 +218,14 @@ export default function Services() {
           className="relative"
         >
           {/* Luxury Card Background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-yellow-300/5 via-black/80 to-black rounded-xl sm:rounded-2xl lg:rounded-3xl"></div>
-          <div className="absolute inset-0 border border-yellow-300/20 rounded-xl sm:rounded-2xl lg:rounded-3xl"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-yellow-300/5 via-black/80 to-black xx-xl sm:xx-2xl lg:xx-3xl"></div>
+          <div className="absolute inset-0 border border-yellow-300/20 xx-xl sm:xx-2xl lg:xx-3xl"></div>
           
           {/* Decorative Elements */}
           <div className="absolute -top-3 -left-3 sm:-top-4 sm:-left-4 md:-top-6 md:-left-6 w-6 h-6 sm:w-8 sm:h-8 md:w-12 md:h-12 border-t border-l border-yellow-300/30"></div>
           <div className="absolute -bottom-3 -right-3 sm:-bottom-4 sm:-right-4 md:-bottom-6 md:-right-6 w-6 h-6 sm:w-8 sm:h-8 md:w-12 md:h-12 border-b border-r border-yellow-300/30"></div>
 
-          <div className="relative p-4 sm:p-6 md:p-8 lg:p-12 xl:p-16 rounded-xl sm:rounded-2xl lg:rounded-3xl">
+          <div className="relative p-4 sm:p-6 md:p-8 lg:p-12 xl:p-16 xx-xl sm:xx-2xl lg:xx-3xl">
             <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 md:gap-16 items-center">
               <div>
                 <span className="inline-block text-yellow-300 text-xs sm:text-sm tracking-[0.15em] sm:tracking-[0.2em] md:tracking-[0.3em] uppercase font-light mb-3 sm:mb-4 md:mb-6">
@@ -266,7 +266,7 @@ export default function Services() {
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                     viewport={{ once: true }}
                     whileHover={{ y: -5 }}
-                    className="bg-black/40 backdrop-blur-sm border border-white/10 rounded-lg sm:rounded-xl p-4 sm:p-6 hover:border-yellow-300/30 transition-all duration-300"
+                    className="bg-black/40 backdrop-blur-sm border border-white/10 xx-lg sm:xx-xl p-4 sm:p-6 hover:border-yellow-300/30 transition-all duration-300"
                   >
                     <div className="text-xl sm:text-2xl mb-2 sm:mb-3 md:mb-4">{feature.icon}</div>
                     <h4 className="text-white text-sm sm:text-base md:text-lg font-light mb-1 sm:mb-2">{feature.title}</h4>

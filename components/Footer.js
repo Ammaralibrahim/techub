@@ -62,8 +62,8 @@ export default function Footer() {
     <footer className="relative bg-black border-t border-white/10 pt-20 pb-10 px-4 md:px-6 overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0">
-        <div className="absolute bottom-0 left-0 w-32 h-32 border border-white/5 rounded-full"></div>
-        <div className="absolute top-0 right-0 w-48 h-48 border border-white/5 rounded-full"></div>
+        <div className="absolute bottom-0 left-0 w-32 h-32 border border-white/5 xx-full"></div>
+        <div className="absolute top-0 right-0 w-48 h-48 border border-white/5 xx-full"></div>
       </div>
       
       {/* Top Gradient Line */}
@@ -91,12 +91,12 @@ export default function Footer() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Enter your email"
-                    className="flex-grow bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-yellow-300/50 transition-all duration-300 font-light placeholder:text-white/30"
+                    className="flex-grow bg-white/5 border border-white/10 xx-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-yellow-300/50 transition-all duration-300 font-light placeholder:text-white/30"
                     required
                   />
                   <button
                     type="submit"
-                    className="bg-white text-black font-light py-3 px-6 text-sm tracking-widest uppercase hover:bg-yellow-300 hover:text-white transition-all duration-300 whitespace-nowrap rounded-xl"
+                    className="bg-white text-black font-light py-3 px-6 text-sm tracking-widest uppercase hover:bg-yellow-300 hover:text-white transition-all duration-300 whitespace-nowrap xx-xl"
                   >
                     Subscribe
                   </button>
@@ -116,7 +116,7 @@ export default function Footer() {
                     rel="noopener noreferrer"
                     whileHover={{ y: -3, scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/70 hover:text-yellow-300 hover:border-yellow-300/30 transition-all duration-300"
+                    className="w-12 h-12 xx-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/70 hover:text-yellow-300 hover:border-yellow-300/30 transition-all duration-300"
                     aria-label={`Follow us on ${social.label}`}
                   >
                     {social.icon}
@@ -140,7 +140,7 @@ export default function Footer() {
                         className="text-white/60 text-sm font-light hover:text-yellow-300 transition-colors duration-300 flex items-center gap-2 group"
                         aria-label={`Navigate to ${link.name}`}
                       >
-                        <div className="w-1.5 h-1.5 rounded-full bg-yellow-300/20 group-hover:bg-yellow-300 transition-colors duration-300"></div>
+                        <div className="w-1.5 h-1.5 xx-full bg-yellow-300/20 group-hover:bg-yellow-300 transition-colors duration-300"></div>
                         {link.name}
                       </motion.a>
                     </li>
@@ -194,7 +194,7 @@ export default function Footer() {
             whileHover={{ scale: 1.1, y: -5 }}
             whileTap={{ scale: 0.95 }}
             onClick={scrollToTop}
-            className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/70 hover:text-yellow-300 hover:border-yellow-300/30 transition-all duration-300 order-3"
+            className="w-12 h-12 xx-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/70 hover:text-yellow-300 hover:border-yellow-300/30 transition-all duration-300 order-3"
             aria-label="Scroll back to top"
           >
             <FiArrowUp className="text-lg" />
