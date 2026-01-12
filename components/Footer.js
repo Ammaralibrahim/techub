@@ -3,6 +3,8 @@
 import { motion } from "framer-motion"
 import { FiInstagram, FiLinkedin, FiTwitter, FiArrowUp, FiFacebook, FiGithub } from "react-icons/fi"
 import { useState } from "react"
+import Image from "next/image"
+
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -10,11 +12,11 @@ export default function Footer() {
   }
 
   const socialLinks = [
-    { icon: <FiInstagram className="text-xl" />, label: "Instagram", href: "https://instagram.com/techhubstudio" },
-    { icon: <FiLinkedin className="text-xl" />, label: "LinkedIn", href: "https://linkedin.com/company/techhubstudio" },
-    { icon: <FiTwitter className="text-xl" />, label: "Twitter", href: "https://twitter.com/techhubstudio" },
-    { icon: <FiFacebook className="text-xl" />, label: "Facebook", href: "https://facebook.com/techhubstudio" },
-    { icon: <FiGithub className="text-xl" />, label: "GitHub", href: "https://github.com/techhubstudio" },
+    { icon: <FiInstagram className="text-xl" />, label: "Instagram", href: "https://www.instagram.com/techub.en" },
+    // { icon: <FiLinkedin className="text-xl" />, label: "LinkedIn", href: "https://linkedin.com/company/techhubstudio" },
+    // { icon: <FiTwitter className="text-xl" />, label: "Twitter", href: "https://twitter.com/techhubstudio" },
+    // { icon: <FiFacebook className="text-xl" />, label: "Facebook", href: "https://facebook.com/techhubstudio" },
+    // { icon: <FiGithub className="text-xl" />, label: "GitHub", href: "https://github.com/techhubstudio" },
   ]
 
   const footerLinks = [
@@ -75,9 +77,19 @@ export default function Footer() {
           {/* Brand & Newsletter */}
           <div className="lg:col-span-2">
             <div className="mb-8">
-              <h2 className="text-3xl md:text-4xl font-light mb-4">
-                TechHub<span className="text-yellow-300">.</span>
-              </h2>
+              
+                       <div className="flex items-center gap-2">
+                         <div className="relative w-24 h-10 md:w-40 md:h-16">
+                           <Image
+                             src="/logo.png"
+                             alt="TechHub Logo"
+                             fill
+                             className="object-contain"
+                             priority
+                             sizes="(max-width: 768px) 96px, 160px"
+                           />
+                         </div>
+                       </div>
               <p className="text-white/60 text-sm md:text-base font-light mb-8 max-w-md">
                 Crafting premium digital experiences for forward-thinking brands worldwide.
               </p>
